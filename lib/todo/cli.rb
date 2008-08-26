@@ -49,7 +49,7 @@ Main {
     
     def run
        unless params['notags'].value
-        tags = ask("Enter tags for this item (seperate from commas)', (comma sep list)", lambda {|str| 
+        tags = ask("Enter tags for this item (seperate from commas) ", lambda {|str| 
                str.split(/,\s*/) })
        end
        
@@ -74,12 +74,13 @@ Main {
          
     argument('item'){
        argument_optional 
-       description 'name of the todo item to remove'
+       description 'Name of the todo item to remove'
     }
     
     option('index', 'i'){
       cast :int
       argument :required
+      description 'Index of the todo item to remove (starting from 1). Use instead of item name'
     }
        
     def run

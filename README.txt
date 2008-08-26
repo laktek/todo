@@ -1,48 +1,58 @@
-= todo
+= Simple command-line todo list manager
 
-* FIX (url)
+Really want to get things done? Don't want to juggle with web based todo lists? 
+Get your things done with command-line. No hassle, no distraction - Try out todo ruby gem. 
 
-== DESCRIPTION:
 
-FIX (describe your package)
+== FEATURES:
 
-== FEATURES/PROBLEMS:
+* Uses human readable YAML to store the todo lists (You could edit the todo list manually)
+* Supportss project specific todo lists. (Just run 'todo create' in your project directory)
+* Supports tagging.
 
-* FIX (list of features or problems)
+== Install
 
-== SYNOPSIS:
+First make sure you install the dependency gems.
+  sudo gem install main
+  sudo gem install highline
 
-  FIX (code sample of usage)
+  then;
+  sudo gem install todo (should work)
+  
+  You can also install from git
+  git clone git://github.com/laktek/todo.git
+  cd todo
+  rake install_gem
+  
+== Example:
 
-== REQUIREMENTS:
+  Here is a small sample on how to use todo gem
+  
+  #visit your project folder
+  cd projects/newapp
+  
+  #create a new todo list for the project
+  todo create
+  
+  #add a new task
+  todo add "write the specs"
+  - add tags : important, due:24/08/2008
+  
+  #listing all tasks
+  todo list --all
+  
+  #listing tasks tagged 'important'
+  todo list --tag important
+  
+  #removing a task by name
+  todo remove "write the specs"
+  
+  #removing a task by index
+  todo remove -i 1
+  
+== Issues/Improvements
 
-* FIX (list of requirements)
+Todo is still its infant days and have very minimum functionality. If you come across any issues or like to suggest any improvements, please feel free to contact me : lakshan [at] web2media [dot] net
 
-== INSTALL:
 
-* FIX (sudo gem install, anything else)
 
-== LICENSE:
-
-(The MIT License)
-
-Copyright (c) 2008 FIXME full name
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
