@@ -1,4 +1,3 @@
-(in /home/lakshan/projects/ruby-samples/todo)
 Gem::Specification.new do |s|
   s.name = %q{todo}
   s.version = "0.0.2"
