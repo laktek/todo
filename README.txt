@@ -17,12 +17,11 @@ First make sure you install the dependency gems.
   sudo gem install highline
 
   then;
-  sudo gem install todo (should work)
+  sudo gem install todo
   
-  You can also install from git
-  git clone git://github.com/laktek/todo.git
-  cd todo
-  rake install_gem
+  You can also install from github:
+  gem sources -a http://gems.github.com
+  sudo gem install laktek-todo
   
 == Example:
 
