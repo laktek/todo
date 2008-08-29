@@ -54,7 +54,7 @@ Main {
     
     def run
        unless params['notags'].value
-        tags = ask("Enter tags for this item (seperate from commas) ", lambda {|str| 
+        tags = ask("Enter tags for this item (separate with commas) ", lambda {|str| 
                str.split(/,\s*/) })
        end
        
