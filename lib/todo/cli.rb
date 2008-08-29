@@ -3,11 +3,16 @@ require 'main'
 require 'highline/import'
 require 'ftools'
 
-def read_file(environment)
+def read_list(environment)
   file = environment.nil? ? Todo::Store.read('.todo/list.yml') : Todo::Store.read(environment)
+  if file
+    yield(file)
+  else
+    say "Todo list file is invalid or do not exist."
+  end
 end
 
-def write_file(list, environment)
+def write_list(list, environment)
   file = environment.nil? ? Todo::Store.write(list, '.todo/list.yml') : Todo::Store.write(list, environment)
 end
 
@@ -53,14 +58,9 @@ Main {
                str.split(/,\s*/) })
        end
        
-       #read the YAML file
-       if list=read_file(params['FILE'].value)
-        #add the task
+       read_list(params['FILE'].value) do |list|
         list.add(params['item'].value, tags)
-        #write the changes
-        say "Successfully added your task." if write_file(list, params['FILE'].value)
-       else
-        say "Todo list file is invalid or do not exist."
+        say "Successfully added your task." if write_list(list, params['FILE'].value)
        end
     end
   end
@@ -84,14 +84,12 @@ Main {
     }
        
     def run
-      if list=read_file(params['FILE'].value)
+      read_list(params['FILE'].value) do |list|
         if list.remove(params['item'].value || params['index'].value)
-          say "Removed item from the list." if write_file(list, params['FILE'].value)
+          say "Removed item from the list." if write_list(list, params['FILE'].value)
         else 
           say "Could not find item to remove."
         end
-      else
-        say "Todo list file is invalid or do not exist."
       end      
     end
   end
@@ -114,7 +112,7 @@ Main {
     }
         
     def run
-      if list=read_file(params['FILE'].value)
+      read_list(params['FILE'].value) do |list|
       
         if params['tag'].given?
           title = "Listing todos tagged '#{params['tag'].value}'"
@@ -129,8 +127,7 @@ Main {
           tag_string = ("(#{tags.join(", ")})") unless tags.include?(nil)
           say " - #{task} #{tag_string} \n"
         end
-      else
-        say "Todo list file is invalid or do not exist."
+      
       end
     end  
   end

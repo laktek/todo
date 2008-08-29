@@ -1,11 +1,11 @@
 (in /home/lakshan/projects/ruby-samples/todo)
 Gem::Specification.new do |s|
   s.name = %q{todo}
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Lakshan Perera"]
-  s.date = %q{2008-08-28}
+  s.date = %q{2008-08-29}
   s.default_executable = %q{todo}
   s.description = %q{simple command line todo list manager}
   s.email = ["lakshan@web2media.net"]
