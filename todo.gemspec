@@ -1,39 +1,26 @@
-(in /home/lakshan/projects/ruby-samples/todo)
-Gem::Specification.new do |s|
-  s.name = %q{todo}
-  s.version = "0.0.4"
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'todo/version'
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Lakshan Perera"]
-  s.date = %q{2008-08-29}
-  s.default_executable = %q{todo}
-  s.description = %q{simple command line todo list manager}
-  s.email = ["lakshan@web2media.net"]
-  s.executables = ["todo"]
-  s.extra_rdoc_files = ["History.txt", "License.txt", "Manifest.txt", "README.txt", "website/index.txt"]
-  s.files = ["History.txt", "License.txt", "Manifest.txt", "README.txt", "Rakefile", "bin/todo", "config/hoe.rb", "config/requirements.rb", "lib/todo.rb", "lib/todo/version.rb", "lib/todo/cli.rb", "lib/todo/list.rb", "lib/todo/store.rb", "script/console", "script/destroy", "script/generate", "script/txt2html", "setup.rb", "tasks/deployment.rake", "tasks/environment.rake", "tasks/website.rake", "spec/todo_list_specs.rb", "spec/todo_store_specs.rb", "website/index.html", "website/index.txt", "website/javascripts/rounded_corners_lite.inc.js", "website/stylesheets/screen.css", "website/template.html.erb"]
-  s.has_rdoc = true
-  s.homepage = %q{http://todo.rubyforge.org}
-  s.post_install_message = %q{}
-  s.rdoc_options = ["--main", "README.txt"]
-  s.require_paths = ["lib"]
-  s.rubyforge_project = %q{todo}
-  s.rubygems_version = %q{1.2.0}
-  s.summary = %q{simple command line todo list manager}
+Gem::Specification.new do |spec|
+  spec.name          = "todo"
+  spec.version       = Todo::VERSION
+  spec.authors       = ["Lakshan Perera"]
+  spec.email         = ["lakshan@web2media.net"]
+  spec.description   = %q{simple command line todo list manager}
+  spec.summary       = %q{simple command line todo list manager}
+  spec.homepage      = %q{http://todo.rubyforge.org}
+  spec.license       = "MIT"
 
-  if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
-    s.specification_version = 2
+  spec.files         = `git ls-files`.split($/)
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.require_paths = ["lib"]
 
-    if current_version >= 3 then
-      s.add_runtime_dependency(%q<main>, [">= 2.8.2"])
-      s.add_runtime_dependency(%q<highline>, [">= 1.4.0"])
-    else
-      s.add_dependency(%q<main>, [">= 2.8.2"])
-      s.add_dependency(%q<highline>, [">= 1.4.0"])
-    end
-  else
-    s.add_dependency(%q<main>, [">= 2.8.2"])
-    s.add_dependency(%q<highline>, [">= 1.4.0"])
-  end
+  spec.add_development_dependency "bundler", "~> 1.3"
+  spec.add_development_dependency "rake"
+
+  spec.add_runtime_dependency "main", ">= 2.8.2"
+  spec.add_runtime_dependency "highline", ">= 1.4.0"
 end
