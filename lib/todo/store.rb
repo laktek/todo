@@ -6,12 +6,12 @@ module Todo
       def self.read(file)
         begin
          loaded_list = YAML::load( File.open( file ) )
-         loaded_list ? List[loaded_list] : List.new 
+         loaded_list ? List[loaded_list] : List.new
         rescue
           nil
         end
       end
-      
+
       def self.write(list, file)
         begin
           File.open( file, 'w' ) do |f|
@@ -21,6 +21,6 @@ module Todo
           nil
         end
       end
-      
+
   end
 end

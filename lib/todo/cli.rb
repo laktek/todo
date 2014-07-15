@@ -123,9 +123,10 @@ Main {
         end
 
         say title
+        i = 0
         tasks.each do |task, tags|
-          tag_string = ("(#{tags.join(", ")})") unless tags.include?(nil)
-          say " - #{task} #{tag_string} \n"
+          tag_string = ("[#{tags.join(", ")}]") unless tags.include?(nil)
+          say "(#{i+=1}) - #{task} #{tag_string} \n"
         end
 
       end
