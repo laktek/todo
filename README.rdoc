@@ -25,7 +25,7 @@ Get your things done with command-line. No hassle, no distraction - Try out todo
   gem sources -a http://gems.github.com
   sudo gem install mstuefer-todo
 
-== Example:
+== Example
 
   Here is a small sample on how to use todo gem
 
@@ -54,4 +54,4 @@ Get your things done with command-line. No hassle, no distraction - Try out todo
 == Issues/Improvements
 
 Todo is very minimalistic by his nature.
-For any issue or improvement, feel free to contact us.
+For any issue or improvement, feel free to contact.
