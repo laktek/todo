@@ -4,24 +4,26 @@ Really want to get things done? Don't want to juggle with web based todo lists?
 Get your things done with command-line. No hassle, no distraction - Try out todo ruby gem.
 
 
-== FEATURES:
+== Features
 
 * Uses human readable YAML to store the todo lists (You could edit the todo list manually)
 * Supportss project specific todo lists. (Just run 'todo create' in your project directory)
-* Supports tagging.
+* Supports tagging
 
 == Install
 
-First make sure you install the dependency gems.
-  sudo gem install main
-  sudo gem install highline
+==== Original gem from laktek
 
-  then;
   sudo gem install todo
 
   You can also install from github:
   gem sources -a http://gems.github.com
   sudo gem install laktek-todo
+
+==== This fork
+
+  gem sources -a http://gems.github.com
+  sudo gem install mstuefer-todo
 
 == Example:
 
@@ -38,7 +40,7 @@ First make sure you install the dependency gems.
   - add tags : important, due:24/08/2008
 
   #listing all tasks
-  todo list --all
+  todo list
 
   #listing tasks tagged 'important'
   todo list --tag important
@@ -51,4 +53,5 @@ First make sure you install the dependency gems.
 
 == Issues/Improvements
 
-Todo is still its infant days and have very minimum functionality. If you come across any issues or like to suggest any improvements, please feel free to contact me : lakshan [at] web2media [dot] net
+Todo is very minimalistic by his nature.
+For any issue or improvement, feel free to contact us.
