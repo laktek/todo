@@ -2,6 +2,7 @@ require 'rubygems'
 require 'main'
 require 'highline/import'
 require 'fileutils'
+require 'SecureRandom'
 
 def read_tasks(environment)
   file = environment.nil? ? Todo::Store.read('.todo/list.yml') : Todo::Store.read(environment)
@@ -58,7 +59,13 @@ Main {
        end
 
       read_tasks(params['FILE'].value) do |tasks|
-        tasks << Todo::Task.new(params['item'].value, tags).to_h
+        # tasks << Todo::Task.new(params['item'].value, tags).to_h
+        tasks << {
+          "taskid" => SecureRandom.hex(4),
+          "created_at" => Time.now.to_s,
+          "description" => params['item'].value,
+          "tags" => tags
+        }
         say "Successfully added your task" if write_tasks(tasks, params['FILE'].value)
        end
     end
