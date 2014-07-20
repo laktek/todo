@@ -2,7 +2,7 @@ require 'todo/controller'
 
 RSpec.describe 'Todo::Controller' do
 
-  let(:filename) { ".todo/list.yml" }
+  let(:filename) { ".todo.yml" }
 
   let(:empty_task_list) { [] }
   let(:created_at) { Time.now.to_s }
