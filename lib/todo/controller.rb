@@ -50,7 +50,6 @@ module Todo
 
   def self.save_tasks(filename,tasks,file=File)
     begin
-      FileUtils.makedirs(".todo") unless File.exist?(filename)
       File.open(filename,"w+") { |f| f << tasks.to_yaml }
     rescue
       nil

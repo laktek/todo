@@ -4,7 +4,7 @@ require 'fileutils'
 require 'highline/import'
 
 #
-TODO_FILE   = '.todo/list.yml'
+TODO_FILE   = '.todo.yml'
 ADD_DESC    = "Adds a new task"
 REMOVE_DESC = "Removes a task from this todo list"
 LIST_DESC   = "Lists the tasks"
