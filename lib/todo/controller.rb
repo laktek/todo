@@ -5,71 +5,61 @@ require 'yaml'
 
 module Todo
 
-  def self.create_todo_list(file)
-    unless File.exist?(file)
-      FileUtils.makedirs(".todo")
-      _newfile = File.new(file,"w+")
-      if _newfile
-        say "<%= color('New todo list created', :green) %>"
-        _newfile.close
-      end
-    else
-      say "<%= color('Todo list already exists in this directory', :yellow) %>"
-    end
-  end
-
-  def self.add_task(file,notags,description)
-    tags  = []
-
-    _tasks=load_tasks(file)
-    tags = ask("(optional) Enter comma-separated tags: ", lambda {|s| s.split(/,\s*/) }) unless notags
+  def self.add_task(filename,notags,description,taskid=SecureRandom.hex(4),created_at=Time.now.to_s)
+    tags   = []
+    _tasks = load_tasks(filename)
+    tags   = ask("(optional) Enter comma-separated tags: ", lambda {|s| s.split(/,\s*/) }) unless notags
 
     _tasks << {
-      "taskid" => SecureRandom.hex(4),
-      "created_at" => Time.now.to_s,
+      "taskid" => taskid,
+      "created_at" => created_at,
       "description" => description,
       "tags" => tags
     }
-    say "<%= color('Successfully added your task', :green) %>" if(save_tasks(file, _tasks))
+
+    "<%= color('Task added', :green) %>" if(save_tasks(filename,_tasks))
   end
 
-  def self.del_task(file,index)
-    _tasks=(load_tasks(file).delete_at(index-1))
-    say "<%= color('Task deleted', :yellow) %>" if(save_tasks(file,_tasks))
+  def self.del_task(filename,index)
+    _tasks=load_tasks(filename)
+    if(_tasks.delete_at(index-1) && save_tasks(filename,_tasks))
+      "<%= color('Task deleted', :yellow) %>"
+    else
+      "<%= color('No task deleted', :red) %>"
+    end
   end
 
-  def self.show_tasks(file,tag)
-    _tasks=load_tasks(file)
-    tag.nil? ? (tag="all") : (_tasks.select! {|t| t["tags"].include?(tag)})
+  def self.show_tasks(filename,tag)
+    _tasks=load_tasks(filename)
 
-    say "Listing tasks (#{tag.to_s})"
-
+    _rtn      = "Listing tasks (#{tag ? tag.to_s : 'all'})\n"
     _tasks.each_with_index do |task, i|
-      _rtn    = ""
+      next if(tag && !(task["tags"].include?(tag)))
       _rtn   += "(#{i+1})\n"
       _rtn   += "\t taskid      : #{task['taskid']}\n"
       _rtn   += "\t created_at  : #{task['created_at']}\n"
-      _rtn   += "\t description : <%= color('"+task['description']+"', :green) %>\n"
+      _rtn   += "\t description : <%= color('"+task['description']+"', :yellow) %>\n"
       unless(task['tags'].empty?)
         _rtn += "\t tags        : #{task['tags']}\n\n"
       end
-      say _rtn
     end
+    _rtn
   end
 
   #
 
-  def self.save_tasks(file, tasks)
+  def self.save_tasks(filename,tasks,file=File)
     begin
-      File.open(file,'w') { |f| f << tasks.to_yaml }
+      FileUtils.makedirs(".todo") unless File.exist?(filename)
+      File.open(filename,"w+") { |f| f << tasks.to_yaml }
     rescue
       nil
     end
   end
 
-  def self.load_tasks(file)
+  def self.load_tasks(filename)
     begin
-      _tasks = YAML::load(File.open(file))
+      _tasks = YAML::load(File.open(filename))
     rescue
       nil
     end

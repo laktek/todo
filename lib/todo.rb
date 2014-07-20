@@ -1,6 +1,5 @@
-require 'todo/task'
 require 'todo/version'
-require 'todo/store'
+require 'todo/controller'
 
 module Todo
 
