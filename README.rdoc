@@ -7,7 +7,7 @@ Get your things done with command-line. No hassle, no distraction - Try out todo
 == Features
 
 * Uses human readable YAML to store the todo lists (You could edit the todo list manually)
-* Supportss project specific todo lists. (Just run 'todo create' in your project directory)
+* Supports project specific todo lists. (Creates a file '.todo.yml' in the directory you use it)
 * Supports tagging
 
 == Install
