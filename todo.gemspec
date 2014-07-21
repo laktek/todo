@@ -6,11 +6,11 @@ require 'todo/version'
 Gem::Specification.new do |spec|
   spec.name          = "todo"
   spec.version       = Todo::VERSION
-  spec.authors       = ["Lakshan Perera"]
-  spec.email         = ["lakshan@web2media.net"]
+  spec.authors       = ["Lakshan Perera", "Aniket Pant", "Dennis Theisen"]
+  spec.email         = ["lakshanlaktek.com"]
   spec.description   = %q{simple command line todo list manager}
   spec.summary       = %q{simple command line todo list manager}
-  spec.homepage      = %q{http://todo.rubyforge.org}
+  spec.homepage      = %q{http://github.com/laktek/todo}
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
